@@ -1,0 +1,39 @@
+There are 2 way of running search queries: using a request body and query params
+
+### Query DSL
+```
+GET /analyzer_test/_search
+{
+  "query": {
+    "match": {
+      "description":  "drinking"
+    }
+  }
+}
+```
+In this example, match is the query type which then contains a key with the name of the field we search against. 
+
+There are two main groups of queries in the query DSL: **Leaf query** and **Compound Query**
+![query_types](https://github.com/konman1989/es-notes/blob/main/images/queries_types.png)
+
+### Query params
+
+```
+GET /products/_search?q=tags:Meat and name:Lobster
+```
+```
+GET /products/_search?q=* <- returns everythibg
+```
+Query DSL also support query string as well:
+```
+GET /analyzer_test/_search
+{
+  "query": {
+    "query_string": {
+      "query":  "name:pasta"
+    }
+  }
+}
+```
+[More on query string queries](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html)
+
